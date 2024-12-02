@@ -18,8 +18,7 @@ import { Workspace } from "../types";
 
 const app = new Hono()
 
-    .get(
-        "/",sessionMiddleware, async (c) => {
+    .get( "/" , sessionMiddleware , async (c) => {
 
             const user = c.get("user");
             const databases= c.get("databases");
@@ -45,11 +44,7 @@ const app = new Hono()
         }
     )
 
-    .post(
-        "/",
-        zValidator("form",createWorkspaceSchema),
-        sessionMiddleware,
-        async (c)=>{
+    .post( "/" , zValidator("form",createWorkspaceSchema), sessionMiddleware, async (c)=>{
 
             const databases = c.get("databases");
             const storage = c.get("storage");
@@ -100,9 +95,7 @@ const app = new Hono()
         }
     )
 
-    .patch(
-        "/:workspaceId",sessionMiddleware,zValidator("form",updateWorkspaceSchema),
-        async (c) => {
+    .patch( "/:workspaceId", sessionMiddleware , zValidator("form",updateWorkspaceSchema), async (c) => {
 
             const databases = c.get("databases");
             const storage = c.get("storage");
@@ -147,8 +140,8 @@ const app = new Hono()
 
         }
     )
-    .delete(
-        "/:workspaceId",sessionMiddleware, async (c) => {
+    .delete( "/:workspaceId" , sessionMiddleware , async (c) => {
+
             const databases = c.get("databases");
             const user = c.get("user");
 
@@ -169,8 +162,8 @@ const app = new Hono()
         }   
     )
 
-    .post(
-        "/:workspaceId/reset-invite-code",sessionMiddleware, async (c) => {
+    .post( "/:workspaceId/reset-invite-code" , sessionMiddleware , async (c) => {
+
             const databases = c.get("databases");
             const user = c.get("user");
 
@@ -194,8 +187,7 @@ const app = new Hono()
         }   
     )
 
-    .post(
-        "/:workspaceId/join",sessionMiddleware, zValidator("json", z.object({ code: z.string() })) ,async (c) => {
+    .post( "/:workspaceId/join" , sessionMiddleware , zValidator("json", z.object({ code: z.string() })) , async (c) => {
             const { workspaceId } = c.req.param();
             const { code } = c.req.valid("json");
 
