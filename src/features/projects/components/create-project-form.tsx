@@ -8,7 +8,7 @@ import { useCreateProject } from "../api/use-create-project";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
 
-import { createProjectSchema } from "../schema";
+import { createProjectSchema } from "../schemas";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DottedSeparator } from "@/components/dotted-separator";
@@ -55,8 +55,9 @@ export const CreateProjectForm=({ onCancel }:CreateProjectFormProps) =>{
 
         mutate({ form : finalValues }, {
 
-            onSuccess: ({ data }) =>{
+            onSuccess: ({data}) =>{
                 form.reset();
+                router.push('/workspaces/${worlspaceId}/projects/${data.$id');
                 
             }
 
