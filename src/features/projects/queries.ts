@@ -8,7 +8,6 @@ interface getProjectProps {
 }
 
 export const getProject = async ({projectId}: getProjectProps) => {
-       throw new Error ("Test")
 
 
         const { databases , account } = await createSessionClient();
