@@ -10,9 +10,9 @@ export const useGetProjects = ({workspaceId}: useGetProjectsProps) => {
 
     const query = useQuery({ queryKey : ["projects", workspaceId] , queryFn : async () => {
 
-            const response = await client.api.projects.$get({ query: {workspaceId} });
+            const response = await client.api.projects.$get({ query: { workspaceId } });
 
-            if(!response.ok) throw new Error("Failted to fetch Projects");
+            if(!response.ok) throw new Error("Failed to fetch Projects");
 
             const { data } = await response.json();
 
